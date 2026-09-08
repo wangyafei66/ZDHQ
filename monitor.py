@@ -365,6 +365,8 @@ def build_dashboard(conn):
  .head{{position:sticky;top:0;background:#1f6feb;color:#fff;padding:14px 16px;z-index:10}}
  .head h1{{font-size:18px;margin:0 0 2px;font-weight:600}}
  .head .sub{{font-size:12px;opacity:.85}}
+ .head .fresh{{margin-top:7px;display:inline-block;
+   padding:4px 11px;border-radius:12px;font-size:13px;font-weight:600;background:rgba(255,255,255,.22)}}
  .wrap{{padding:12px}}
  .bar{{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 12px}}
  .chip{{border:1px solid #d4dbe5;background:#fff;color:#334;font-size:13px;
@@ -392,7 +394,8 @@ def build_dashboard(conn):
  .toast.show{{opacity:1;transform:translateX(-50%) translateY(0)}}
 </style></head><body>
 <div class="head"><h1>蒙西超市/商铺招租监测</h1>
-<div class="sub">监测 {len(SITES)} 个平台 · 已收录 {db_count(conn)} 条 · 更新于 {updated}</div>
+<div class="sub">监测 {len(SITES)} 个平台 · 已收录 {db_count(conn)} 条</div>
+<div class="fresh">最后检查 {updated} · 每小时自动更新</div>
 <div class="actions"><button class="btn" id="mfbtn">📲 手动抓取</button></div></div>
 <div class="wrap">
  <div class="bar">
