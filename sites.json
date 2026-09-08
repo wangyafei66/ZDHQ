@@ -35,6 +35,20 @@
     "tags": ["政府采购", "学校", "中学", "中职", "医院", "经营权", "招租"]
   },
   {
+    "name": "剑鱼标讯·巴彦淖尔市（覆盖全市各旗县区招标采购，含学校超市/食堂承包类）",
+    "region": "巴彦淖尔",
+    "url": "https://wx.jianyu360.cn/list/city/NMG_BYZE.html",
+    "mode": "js",
+    "tags": ["剑鱼", "巴彦淖尔", "临河", "学校", "超市承包", "综合"]
+  },
+  {
+    "name": "剑鱼标讯·巴彦淖尔市临河区（区级招标采购，学校超市承包等重点来源）",
+    "region": "巴彦淖尔",
+    "url": "https://wx.jianyu360.cn/list/city/NMG_BYZE_LHQ.html",
+    "mode": "js",
+    "tags": ["剑鱼", "临河区", "学校", "超市承包", "招租"]
+  },
+  {
     "name": "内蒙古工业大学后勤管理处（金川/新城/准格尔校区 超市·便利店·商铺·食堂档口委托经营招租）",
     "region": "呼和浩特",
     "url": "https://hqglc.imut.edu.cn/xwgg/zbgg.htm",
