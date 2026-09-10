@@ -57,16 +57,25 @@ jobs:
         run: |
           git config user.name "monitor-bot"
           git config user.email "monitor-bot@users.noreply.github.com"
-          # 先同步到远端最新再提交，避免两次运行撞车时 push 被拒
-          git fetch origin main
-          git reset --soft origin/main
           git add -f web/index.html tenders.html tenders.db daily_report.txt
           if git diff --cached --quiet; then
             echo "本次运行无数据变化，跳过提交"
-          else
-            git commit -m "自动更新看板 $(date +'%Y-%m-%d %H:%M') [skip ci]"
-            git push origin main
+            exit 0
           fi
+          git commit -m "自动更新看板 $(date +'%Y-%m-%d %H:%M') [skip ci]"
+          # 并发运行时（如连续两次提交触发）可能与另一个任务撞车导致 push 被拒，故重试并先同步远端
+          for i in 1 2 3 4 5; do
+            if git push origin main; then
+              echo "推送成功"
+              exit 0
+            fi
+            echo "推送被拒（第 $i 次），同步远端后重试…"
+            git fetch origin main
+            git -c core.editor=true rebase origin/main || git rebase --abort
+            sleep 5
+          done
+          echo "多次重试仍失败"
+          exit 1
 
       - name: 发布到 GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
