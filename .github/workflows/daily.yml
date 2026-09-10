@@ -1,4 +1,4 @@
-name: 蒙西招租监测 · 每3小时更新
+name: 蒙西招租监测 · 每日两次
 
 # 防止上一轮没跑完下一轮又启动导致提交冲突
 concurrency:
@@ -7,12 +7,10 @@ concurrency:
 
 on:
   schedule:
-    # 每 3 小时跑一次（UTC），约合北京时间 8/11/14/17/20/23/2/5 点
-    - cron: '0 */3 * * *'
-  # 首次推送到 main 时立即跑一次，方便马上看到效果
-  push:
-    branches: [main]
-  # 允许在 GitHub 网页上手动点一次立即运行（调试用）
+    # 每天只跑 2 次：UTC 1 点与 7 点 = 北京时间 09:00、15:00
+    # 公开仓库的 Actions 本就免费，降频只为更稳妥省资源
+    - cron: '0 1,7 * * *'
+  # 想临时多跑一次时，可在 GitHub 网页手动点运行（不占定时额度）
   workflow_dispatch:
 
 permissions:
